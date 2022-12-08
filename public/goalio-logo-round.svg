@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="73px"
+   height="28px"
+   viewBox="0 0 73 28"
+   version="1.1"
+   id="svg1213"
+   sodipodi:docname="goalio-logo-round.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <metadata
+     id="metadata1219">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>folio type</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs1217" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="752"
+     id="namedview1215"
+     showgrid="false"
+     inkscape:zoom="3.7134713"
+     inkscape:cx="114.21678"
+     inkscape:cy="62.435729"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1213"
+     inkscape:document-rotation="0" />
+  <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+  <title
+     id="title1202">folio type</title>
+  <rect
+     style="fill:#ffffff;stroke-width:17.582"
+     id="rect1854"
+     width="191.91809"
+     height="131.89673"
+     x="-31.040155"
+     y="-38.59697"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
+  <desc
+     id="desc1204">Created with Sketch.</desc>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+     x="37.565857"
+     y="19.28159"
+     id="text1812"><tspan
+       sodipodi:role="line"
+       id="tspan1810"
+       x="37.565857"
+       y="19.28159" /></text>
+  <g
+     id="g1859"
+     transform="matrix(1.3324958,0,0,1.4112091,3.249692,9.6254387)"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
+    <path
+       id="Fill-1"
+       style="fill:#24ce7b;fill-rule:evenodd;stroke:none;stroke-width:1"
+       d="m 41.739845,-8.8464751 c -0.530956,8.3e-6 -1.060656,0.073473 -1.576172,0.2109375 v 3.3007813 l 0.0078,-0.00391 V 0.833209 l -0.0078,-0.0039 v 3.5 l 0.0078,0.0039 v 6.730468 l -0.0078,-0.0039 v 3.300781 c 0.0026,6.9e-4 0.0052,0.0013 0.0078,0.002 v 3.22461 c 0,0.312804 0.26693,0.566406 0.597656,0.566406 h 2.007812 c 0.330725,0 0.59961,-0.253602 0.59961,-0.566406 V 14.341025 11.026572 4.2824307 l 9.783206,-5.3964839 C 52.884716,-2.7323984 51.860584,-4.169913 50.331642,-5.0046782 L 44.646095,-8.110147 c -0.89916,-0.4909487 -1.902761,-0.7363438 -2.90625,-0.7363281 z m 1.636719,3.5449219 c 0,0 5.489099,3.0048401 5.554687,3.0488281 l -5.554687,3.0351562 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:48.3393px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.20848"
+       x="9.4991407"
+       y="38.267544"
+       id="text1816"
+       transform="scale(0.99770936,1.0022959)"><tspan
+         sodipodi:role="line"
+         id="tspan1814"
+         x="9.4991407"
+         y="38.267544"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:35.4488px;font-family:wendy;-inkscape-font-specification:wendy;stroke-width:1.20848"
+         dy="0">Goalio</tspan></text>
+  </g>
+</svg>
