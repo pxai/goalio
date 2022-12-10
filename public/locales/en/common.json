@@ -1,8 +1,9 @@
 {
     "title": "Welcome to Goalio",
     "home": "Home",
-    "polls": "Goals",
-    "add_poll": "Add Goal",
+    "goals": "Goals",
+    "public": "Public Goals",
+    "add_goal": "Add Goal",
     "profile": "Profile",
     "logout": "Log out",
     "goal": {

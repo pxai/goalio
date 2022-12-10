@@ -1,67 +1,77 @@
 import Link from 'next/link'
-import styles from '../../../styles/Home.module.css'
-import { GoalProps } from '../../../prisma/types';
-import { getSession } from 'next-auth/react';
+import styles from '../styles/Home.module.css'
+import { GoalProps } from '../prisma/types';
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import prisma from '../../../lib/prisma';
 import * as yup from 'yup';
 import { useRouter } from 'next/router'
-import Layout from '../../components/layout';
+import Layout from './components/layout';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { Button } from '@mantine/core';
 
 type Props = {
-  goal: GoalProps
+  goals: GoalProps[]
 }
 
-export default function EditPoll(props: Props) {
+export default function AddGoal(props: Props) {
   const router = useRouter()
   const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
   const [submitted, setSubmitted] = useState(false);
-  const { goal } = props;
+  const [answers, setAnswers] = useState([{title:''}, {title:''}, {title:''}, {title:''}])
+
   const formik = useFormik({
     initialValues: {
-      ...goal
+      title: '',
+      content: '', 
+      published: false,
+      answers
     },
     onSubmit: async (values) => {
       setMessage('Form submitted');
       console.log("Form submitted: ", values)
     try {
       const body = values;
-      await fetch(`/api/goal/${goal.id}`, {
-        method: 'PUT',
+      await fetch('/api/goal', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      await router.push(`/goal/${goal.id}`);
+      await router.push('/');
     } catch (error) {
       console.error(error);
     }
       setSubmitted(true);
     },
     validationSchema: yup.object({
-      title: yup.string().trim().required('Title is required'),
+      title: yup.string().trim().required('Name is required'),
       content: yup.string().trim().required('Description is required'),
+      answers: yup.array()
+      .of(
+        yup.object().shape({
+          title: yup.string().ensure().required("Answer is required")
+        })
+      ).min(3, "You need at least 3 answers")
+      .required("Add 3 answers")
     }),
   });
 
-  const removeMilestones = (index: number) => {
-    const updatedMilestones = milestones.slice(0, index).concat(milestones.slice(index + 1))
+  const removeAnswers = (index: number) => {
+    const updatedAnswers = answers.slice(0, index).concat(answers.slice(index + 1))
     console.log("Before: ", formik.values)
 
-    setMilestones(updatedMilestones)
+    setAnswers(updatedAnswers)
   };
 
   const addAnswer = () => {
-    setMilestones([...milestones, {title: ''}])
+    setAnswers([...answers, {title: ''}])
   };
 
   return (
     <Layout>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <Link href="/">Edit Milestone!</Link>
+          Create<Link href="/">Goals!</Link>
         </h1>
         <div>
         <div hidden={!submitted} className="alert alert-primary" role="alert">
@@ -117,9 +127,33 @@ export default function EditPoll(props: Props) {
               />
             </div>
             <div>
-            <button type="submit" className="btn btn-primary">
-              Update
-            </button>
+              {
+                answers.map((answer, i) => {
+                  return (
+                    <div key={i}>
+                    <label htmlFor={`answer_${i}`} className="form-label">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name={`answers[${i}].title`}
+                      className="form-control"
+                      placeholder="Add answer"
+                      value={formik.values.answers[i]?.title}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    <button onClick={() => removeAnswers(i)} className="btn btn-primary">
+                    {' '}
+                    </button>
+                    </div>
+                  )
+                })
+              }
+              <Button onClick={addAnswer}>Add question</Button>
+            </div>
+            <div>
+            <Button type="submit">Create</Button>
             </div>
           </div>
         </form>
@@ -129,27 +163,11 @@ export default function EditPoll(props: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
-  const session = await getSession({ req });
-  const id = String(query.id);
-  const goal = await prisma.goal.findUnique({
-    where: { 
-      id_and_ownerId: {
-        id: String(id),
-        ownerId: String(session?.user?.id),
-      }
-    },
-    include: {
-      owner: {
-          select: { name: true, id: true },
-      },
-    },
-  });
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
-      props: { 
-        goal: JSON.parse(JSON.stringify(goal)),
-        ...(await serverSideTranslations(locale!, ['common']))
-       }
+    props: { 
+      ...(await serverSideTranslations(locale!, ['common']))
+    }
   };
 };
 

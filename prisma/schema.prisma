@@ -31,12 +31,12 @@ model Goal {
   proof   String?
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  public Boolean @default(false)
+  published Boolean @default(false)
   owner    User?   @relation(fields: [ownerId], references: [id])
   ownerId  String?
   milestones   Milestone[]
   permissions   Permission[]
-  @@unique(fields: [id, ownerId], name: "id_and_userId")
+  @@unique(fields: [id, ownerId], name: "id_and_ownerId")
 }
 
 model Permission {
@@ -55,6 +55,7 @@ model Milestone {
   title     String
   content   String?
   proof   String?
+  permalink String
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   user    User?   @relation(fields: [userId], references: [id])

@@ -3,9 +3,9 @@ import prisma from '../../../../lib/prisma';
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     if (req.method == "GET") {
-        const pollId = String(req.query.id)
-        const allVotes = await prisma.answer.findMany({
-            where: { pollId },
+        const goalId = String(req.query.id)
+        const allMilestones = await prisma.milestone.findMany({
+            where: { goalId },
             include: {
                 _count: {
                   select: { votes: true },
@@ -13,6 +13,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
               },
         })
 
-        return res.json(allVotes)
+        return res.json(allMilestones)
     }
 }

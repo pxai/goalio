@@ -1,55 +1,21 @@
 import Link from "next/link";
 import { GoalProps } from "../../prisma/types"
-import Answer from "./answer";
+import Milestone from "./milestone";
 import { useSession } from 'next-auth/react'; 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import MilestoneForm from "./milestone_form";
 
 type Props = {
-    poll: GoalProps;
+    goal: GoalProps;
 }
 
-export default function Poll (poll : GoalProps) {
+export default function Poll (goal : GoalProps) {
   const router = useRouter();
-  const [votes, setVotes] = useState([])
   const { data: session, status } = useSession();
-
-  const handleVote = async (answerId: string) => {
-    if (!session)
-        alert("You must sign in to vote")
-    else {
-        try {
-            const response = await fetch(`/api/vote`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({answerId, pollId: poll.id}),
-            });
-            const data = await response.json();
-            console.log("voted: ", data)
-            handleShowVotes();
-          } catch (error) {
-            console.error(" Error on vote: ", error);
-          }
-    }
-  }
-
-  const handleShowVotes = async () => {
-    try {
-        const response = await fetch(`/api/poll/${poll.id}/votes`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        });
-        const data = await response.json();
-        console.log("votes:: ", data)
-        setVotes(data);
-      } catch (error) {
-        console.error(" Error on vote: ", error);
-      }
-  }
 
   const handleDelete = async () => {
     try {
-      await fetch(`/api/poll/${poll.id}`, {
+      await fetch(`/api/goal/${goal.id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -59,38 +25,28 @@ export default function Poll (poll : GoalProps) {
       console.error(error);
     }
   }
+
     return (
         <div>
-            <h3><Link href={`/poll/${poll.id}`}>{poll.title}</Link></h3>
-            <div className='author'>By {poll.author?.name}</div>
+            <h3><Link href={`/goal/${goal.id}`}>{goal.title}</Link></h3>
+            <div className='author'>By {goal.owner?.name}</div>
             {
-              poll.author?.id === session?.user.id && 
+              goal.owner?.id === session?.user.id && 
                 <div>
-                  <Link href={`/poll/edit/${poll.id}`}>Update it</Link>
+                  <Link href={`/goal/edit/${goal.id}`}>Update it</Link>
                   <span onClick={handleDelete}>Delete it</span>
                 </div>
             }
-            <p>{poll.content}</p>
-            {
-              votes.length === 0
-              ?    
-                <ul>
-                  {
-                    poll.answers.map(answer => {
-                        return <Answer key={answer.id} answer={answer} handleVote={handleVote}/>
-                    })
-                  } 
-                </ul>
-                :
-                <ul>
-                  {
-                    votes.map(vote => {
-                        return <div key={vote.id}>{vote.title}: {vote._count.votes}</div>
-                    })
-                  } 
-                </ul>
-            }
-
+            <p>{goal.content}</p>
+            <h4>Milestones</h4>
+            <ul>
+              {
+                goal.milestones.map(milestone => {
+                    return <Milestone key={milestone.id} milestone={milestone} />
+                })
+              } 
+            </ul>
+            <MilestoneForm goalId={goal.id} />
         </div>
     )
 }

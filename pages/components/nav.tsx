@@ -10,14 +10,17 @@ export default function Nav () {
     const { data: session, status } = useSession();
     const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
-    console.log("Session: ", session)
+
     return (
         <nav>
             <Link href="/">
                 {t`home`}
             </Link>{' | '}
-            <Link href="/polls">
-                {t`polls`}
+            <Link href="/goals">
+                {t`goals`}
+            </Link>{' | '}
+            <Link href="/public">
+                {t`public`}
             </Link>{' | '}
          { 
             !session ?
@@ -26,8 +29,8 @@ export default function Nav () {
                 </Link>
                 :
                 <>
-                    <Link href="/addpoll">
-                        {t`add_poll`}
+                    <Link href="/addgoal">
+                        {t`add_goal`}
                     </Link>{' | '}
                     <Link href="/profile" data-active={isActive('/profile')}>
                         {t`profile`}

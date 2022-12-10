@@ -7,19 +7,19 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         const id = String(req.query.id)
         const title = String(req.query.title);
 
-        const post = await prisma.answer.update({
+        const milestone = await prisma.milestone.update({
             where: { id: String(id) },
             data: { title },
         })
-        return res.json(post);
+        return res.json(milestone);
     } else if (req.method === "DELETE") {
         // delete a todo.
         const { id } = req.query;
-        const post = await prisma.answer.delete({
+        const milestone = await prisma.milestone.delete({
             where: {
                 id: String(id),
             },
         });
-        return res.json(post);
+        return res.json(milestone);
     }
 }

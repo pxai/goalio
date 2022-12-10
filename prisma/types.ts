@@ -6,7 +6,7 @@ export type GoalProps =  {
     proof: string;
     createdAt: Date;
     updatedAt: Date;
-    public: boolean;
+    published: boolean;
     owner?: UserProps;
     milestones?: MilestoneProps[];
     permissions?: PermissionProps[];
@@ -29,7 +29,7 @@ export type MilestoneProps = {
     createdAt: Date;
     updatedAt: Date;
     user?: UserProps;
-    goal: GoalProps;
+    goalId: string;
     tasks?: TaskProps[];
 }
 

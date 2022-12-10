@@ -10,13 +10,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         const title = String(req.body.title);
         const content = String(req.body.content);
         const published = Boolean(req.body.published);
-        const answers = req.body.answers;
+        const permalink = title.toLowerCase();
+        const milestones = req.body.milestones;
 
-        const result = await prisma.poll.create({
+        const result = await prisma.goal.create({
             data: {
-                title, content, published,
-                author: { connect: { email: String(session?.user?.email) } },
-                answers: { create: answers }
+                title, content, published, permalink,
+                owner: { connect: { email: String(session?.user?.email) } },
+                milestones: { create: milestones }
             },
         })
         return res.json(result)

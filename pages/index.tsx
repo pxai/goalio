@@ -36,7 +36,7 @@ export default function Home(props: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const goals = await prisma.goal.findMany({
-    where: { public: true },
+    where: { published: true },
     include: {
       owner: {
         select: { name: true, id: true },
