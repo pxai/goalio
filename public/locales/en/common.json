@@ -1,13 +1,13 @@
 {
-    "title": "Welcome to Goalio",
-    "home": "Home",
-    "goals": "Goals",
-    "public": "Public Goals",
-    "add_goal": "Add Goal",
-    "profile": "Profile",
-    "logout": "Log out",
-    "goal": {
-      "title": "Goal",
-      "content": "content"
-    }
+  "title": "Welcome to Goalio",
+  "home": "Home",
+  "goals": "Goals",
+  "public": "Public Goals",
+  "add_goal": "Add Goal",
+  "profile": "Profile",
+  "logout": "Log out",
+  "goal": {
+    "title": "Goal",
+    "content": "content"
   }
+}
