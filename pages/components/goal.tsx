@@ -4,8 +4,7 @@ import Milestone from "./milestone";
 import { useSession } from 'next-auth/react'; 
 import { useRouter } from "next/router";
 import MilestoneForm from "./milestone_form";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type Props = {
     goal: GoalProps;
@@ -53,14 +52,8 @@ export default function Poll (goal : GoalProps) {
     )
 }
 
-
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, [
-        'common',
-      ])),
-      // Will be passed to the page component as props
-    },
+export const getServerSideProps = async ({ locale }) => ({
+  props: {
+      ...(await serverSideTranslations(locale, ['common']))
   }
-}
+});

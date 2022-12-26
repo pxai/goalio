@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { MilestoneProps } from "../../prisma/types"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 type Props = {
     milestone: MilestoneProps;
 }
@@ -14,3 +16,9 @@ export default function Milestone ({milestone}: Props) {
         </div>
     )
 }
+
+export const getServerSideProps = async ({ locale }) => ({
+    props: {
+        ...(await serverSideTranslations(locale, ['common']))
+    }
+});
