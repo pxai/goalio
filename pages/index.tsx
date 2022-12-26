@@ -24,8 +24,8 @@ export default function Home(props: Props) {
           </h1>
           <div>
             {
-              goals.map(goal => (
-                <div>{goal.id}</div>
+              goals.map((goal, i) => (
+                <div key={i}>{goal.id}</div>
               ))
             }
           </div>

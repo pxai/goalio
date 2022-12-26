@@ -4,6 +4,7 @@ import Layout from './components/layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 export default function Profile() {
   const { t } = useTranslation()
@@ -17,7 +18,7 @@ export default function Profile() {
         </h1>
         <div>
          <h3>{session?.user.name}</h3> 
-         <img src={session?.user.image} alt="" />
+         <Image src={session?.user.image} alt="" />
         </div>
       </main>
       </Layout>
