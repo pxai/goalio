@@ -5,18 +5,16 @@ import prisma from '../../../lib/prisma';
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });
     if (req.method == "POST") {
-        // creating a new todo.
         const { title, content, milestoneId } = req.body
-        const permalink = title.toLowerCase();
-        const result = await prisma.task.create({
+        const task = await prisma.task.create({
             data: {
                 title,
-                content,                
-                permalink,
+                content,
                 milestone: { connect: { id: String(milestoneId) } },
                 user: { connect: { email: String(session?.user?.email) } },
             },
         })
-        return res.json(result)
+        console.log("Task created: ", task)
+        return res.json(task)
     }
 }

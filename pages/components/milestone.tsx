@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Task from "./task";
 import TaskForm from "./task_form";
 import { useState } from "react";
-import { Button } from "@mantine/core";
+import { Button, Grid } from "@mantine/core";
 
 type Props = {
     milestone: MilestoneProps;
@@ -25,13 +25,17 @@ export default function Milestone ({milestone}: Props) {
             <h4>Tasks</h4>
             <div onClick={toggleTaskForm}>Add</div>
             {showForm && <TaskForm milestoneId={milestone.id} />}
-            <ul>
-              {
-                milestone?.tasks?.map(task => {
-                    return <Task key={task.id} task={task} />
-                })
-              } 
-            </ul>
+            <Grid>
+                <Grid.Col span={4}>
+                    {
+                        milestone?.tasks?.map(task => {
+                            return <Task key={task.id} task={task} />
+                        })
+                    } 
+                </Grid.Col>
+                <Grid.Col span={4}>2</Grid.Col>
+                <Grid.Col span={4}>3</Grid.Col>
+            </Grid>
         </div>
     )
 }

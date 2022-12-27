@@ -63,6 +63,7 @@ model Milestone {
   goal    Goal?   @relation(fields: [goalId], references: [id])
   goalId  String?
   tasks   Task[]
+  @@unique(fields: [id, userId], name: "id_and_userId")
 }
 
 model Task {
@@ -78,6 +79,7 @@ model Task {
   userId  String?
   milestone    Milestone?   @relation(fields: [milestoneId], references: [id])
   milestoneId  String?
+  @@unique(fields: [id, userId], name: "id_and_userId")
 }
 
 model User {

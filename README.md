@@ -58,3 +58,7 @@ brew install cockroachdb/tap/ccloud
 Copy
 ccloud auth login && \
 ccloud cluster sql hasty-okapi
+
+Mantine UI
+
+https://ui.mantine.dev/

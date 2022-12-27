@@ -26,6 +26,7 @@ export type MilestoneProps = {
     title: string;
     content: string;
     proof: string;
+    completed: boolean;
     permalink?: string;
     createdAt: Date;
     updatedAt: Date;
@@ -44,6 +45,7 @@ export type TaskProps = {
     createdAt: Date;
     updatedAt: Date;
     user?: UserProps;
+    milestonId: string;
     milestone?: MilestoneProps;
 }
 
