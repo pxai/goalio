@@ -4,7 +4,6 @@ import { getSession } from 'next-auth/react';
 import { MilestoneProps } from "../../prisma/types"
 import Milestone from "../components/milestone";
 import Header from '../components/header';
-import Nav from '../components/nav';
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -17,7 +16,6 @@ export default function MilestonePage ({ milestone }: Props) {
   return (
     <div className={styles.container}>
     <Header />
-    <Nav />
     <main className={styles.main}>
       <div>
         <Milestone milestone={milestone} />

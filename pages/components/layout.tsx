@@ -1,14 +1,12 @@
-import Nav from "./nav";
 import Footer from "./footer";
-import Header from "./header";
+import HeaderComponent from "./header";
 import styles from '../../styles/Home.module.css'
 
 export default function Layout({ children }) {
     return (
       <>
-        <Header />
+        <HeaderComponent />
         <div className={styles.container}>
-            <Nav />
             <main>{children}</main>
             <Footer />
         </div>

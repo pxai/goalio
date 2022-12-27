@@ -5,7 +5,6 @@ import { GoalProps } from "../../../prisma/types"
 import { useRouter } from "next/router";
 import Goal from "../../components/goal";
 import Header from '../../components/header';
-import Nav from '../../components/nav';
 import styles from '../../../styles/Home.module.css'
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -31,7 +30,6 @@ export default function PollPage ({ goal }: Props) {
   return (
     <div className={styles.container}>
     <Header />
-    <Nav />
     <main className={styles.main}>
       <button onClick={() => router.push('/goals')}>Cancel</button>
       <button onClick={handleDelete}>Confirm Deletion</button>
