@@ -5,12 +5,15 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from "next/router";
 import MilestoneForm from "./milestone_form";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useState } from "react";
 
 type Props = {
     goal: GoalProps;
 }
 
 export default function Poll (goal : GoalProps) {
+  const [showForm, setShowForm] = useState(false);
+  const toggleMilestoneForm = () => { setShowForm(!showForm)}
   const router = useRouter();
   const { data: session, status } = useSession();
 
@@ -40,14 +43,16 @@ export default function Poll (goal : GoalProps) {
             }
             <p>{goal.content}</p>
             <h4>Milestones</h4>
+            <div onClick={toggleMilestoneForm}>Add</div>
+            {showForm && <MilestoneForm goalId={goal.id} />}
+            
             <ul>
               {
-                goal.milestones.map(milestone => {
+                goal?.milestones?.map(milestone => {
                     return <Milestone key={milestone.id} milestone={milestone} />
                 })
               } 
             </ul>
-            <MilestoneForm goalId={goal.id} />
         </div>
     )
 }

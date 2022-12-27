@@ -11,15 +11,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         const content = String(req.body.content);
         const published = Boolean(req.body.published);
         const permalink = title.toLowerCase();
-        const milestones = req.body.milestones;
 
         const result = await prisma.goal.create({
             data: {
                 title, content, published, permalink,
                 owner: { connect: { email: String(session?.user?.email) } },
-                milestones: { create: milestones }
             },
         })
+        console.log("API: ", result)
         return res.json(result)
     }
 }

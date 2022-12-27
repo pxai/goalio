@@ -70,6 +70,8 @@ model Task {
   title     String
   content   String?
   proof   String?
+  completed  Boolean @default(false)
+  permalink String @default("")
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   user    User?   @relation(fields: [userId], references: [id])

@@ -6,11 +6,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     const session = await getSession({ req });
     if (req.method == "POST") {
         // creating a new todo.
-        const { title, content } = req.body
+        const { title, content, milestoneId } = req.body
+        const permalink = title.toLowerCase();
         const result = await prisma.task.create({
             data: {
                 title,
-                content,
+                content,                
+                permalink,
+                milestone: { connect: { id: String(milestoneId) } },
                 user: { connect: { email: String(session?.user?.email) } },
             },
         })

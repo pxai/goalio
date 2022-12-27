@@ -12,6 +12,13 @@ function App({ Component, pageProps }: AppProps) {
         fontFamily: 'Verdana, Open Sans, sans serif',
         colorScheme: 'dark',
         spacing: { xs: 15, sm: 20, md: 25, lg: 30, xl: 40 },
+        breakpoints: {
+          xs: 500,
+          sm: 800,
+          md: 1000,
+          lg: 1200,
+          xl: 1400,
+        },
     }}>
       <SessionProvider session={pageProps.session}>
         <Component {...pageProps} />

@@ -23,7 +23,7 @@ export default function PollPage ({ goal }: Props) {
         headers: { 'Content-Type': 'application/json' },
       });
       console.log("deleted")
-      await router.push('/');
+      await router.push('/goals');
     } catch (error) {
       console.error(error);
     }

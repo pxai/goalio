@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 type Props = {
     task: TaskProps;
 }
-export default function Milestone ({ task }: Props) {
+export default function Task ({ task }: Props) {
     return (
         <div>        
             <div>{task.title}</div>
