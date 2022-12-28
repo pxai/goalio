@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import MilestoneForm from "./milestone_create_form";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from "react";
+import { Button } from "@mantine/core";
+import { IconEdit, IconRefresh, IconSquarePlus, IconTrash } from "@tabler/icons";
 
 type Props = {
     goal: GoalProps;
@@ -34,16 +36,20 @@ export default function Poll (goal : GoalProps) {
         <div>
             <h3><Link href={`/goal/${goal.id}`}>{goal.title}</Link></h3>
             <div className='author'>By {goal.owner?.name}</div>
+            <p>{goal.content}</p>
             {
               goal.owner?.id === session?.user.id && 
-                <div>
-                  <Link href={`/goal/edit/${goal.id}`}>Update it</Link>
-                  <span onClick={handleDelete}>Delete it</span>
-                </div>
+              <Button.Group>
+                <Button component="a" href={`/goal/${goal.id}`} compact leftIcon={<IconRefresh size={14} />}>Reload</Button>
+                <Button component="a" href={`/goal/edit/${goal.id}`}color="green" compact leftIcon={<IconEdit size={14} />}>Edit</Button>
+                <Button component="a" href={`/goal/delete/${goal.id}`} color="red" compact leftIcon={<IconTrash size={14} />}>Delete</Button>
+              </Button.Group>
             }
-            <p>{goal.content}</p>
+
             <h4>Milestones</h4>
-            <div onClick={toggleMilestoneForm}>Add</div>
+            <Button  onClick={toggleMilestoneForm} leftIcon={<IconSquarePlus/>}>
+              Add Milestone
+            </Button>
             {showForm && <MilestoneForm goalId={goal.id} />}
             
             <ul>

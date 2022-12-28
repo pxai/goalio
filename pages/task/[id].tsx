@@ -5,8 +5,8 @@ import { TaskProps } from "../../prisma/types"
 import Task from "../components/task";
 import Header from '../components/header';
 import styles from '../../styles/Home.module.css'
-import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Layout from '../components/layout';
 
 type Props = {
   task: TaskProps;
@@ -14,17 +14,14 @@ type Props = {
 
 export default function TaskPage ({ task }: Props) {
   return (
-    <div className={styles.container}>
+    <Layout>
     <Header />
     <main className={styles.main}>
       <div>
         <Task task={task} />
       </div> 
       </main>
-      <footer className={styles.footer}>
-          <Link href="https://github.com/pxai/nextjspolls">By Pello</Link>
-      </footer>
-    </div>
+    </Layout>
   )
 }
 

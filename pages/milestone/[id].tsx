@@ -17,13 +17,11 @@ export default function MilestonePage ({ milestone }: Props) {
   return (
     <Layout>
       <main className={styles.main}>
+      <Link href={`/goal/${milestone.goalId}`}>Goal</Link>
         <div>
-          <Milestone milestone={milestone} />
+          <Milestone milestone={milestone} contracted={false} />
         </div> 
         </main>
-        <footer className={styles.footer}>
-            <Link href="https://github.com/pxai/nextjspolls">By Pello</Link>
-        </footer>
     </Layout>
   )
 }

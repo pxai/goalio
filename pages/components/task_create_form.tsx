@@ -20,8 +20,8 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
       },
   
       validate: {
-        title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
-        content: (value) => (/[\w]{3,}/.test(value) ? null : 'Content required'),
+        title: (value) => (/^[\w\W]{3,}$/.test(value) ? null : 'Title min required'),
+        content: (value) => (/^[\w\W]{3,}$/.test(value) ? null : 'Content required'),
       },
     });
 
@@ -48,7 +48,7 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
 {message}
   <Box sx={{ maxWidth: 300 }} mx="auto">
 
-  </Box>
+
 <form className="w-50" onSubmit={form.onSubmit(handleSubmit)}>
           <div className="mb-3">
             <div>
@@ -79,6 +79,7 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
             </div>
           </div>
         </form>
+        </Box>
         </div>
     )
 }

@@ -20,9 +20,6 @@ export default function GoalPage ({ goal }: Props) {
         <Goal {...goal} />
       </div> 
       </main>
-      <footer className={styles.footer}>
-          <Link href="https://github.com/pxai/nextjspolls">By Pello</Link>
-      </footer>
     </Layout>
   )
 }
@@ -41,7 +38,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       owner: {
           select: { name: true, id: true },
       },
-      milestones: true
+      milestones: {
+        include: {
+          tasks: true,
+        },
+      },
     },
   });
   return {
