@@ -40,7 +40,7 @@ export type TaskProps = {
     title: string;
     content: string;
     proof: string;
-    completed: boolean;
+    status: string;
     permalink?: string;
     createdAt: Date;
     updatedAt: Date;

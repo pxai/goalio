@@ -7,12 +7,16 @@ type Props = {
     task: TaskProps;
 }
 export default function Task ({ task }: Props) {
+    const getColor = (status: string) => ({"TODO": "pink", "DOING": "orange", "DONE": "green"}[status])
     return (
         <Card shadow="sm" p="lg" radius="md" withBorder>  
             <Card.Section mt="md" mb="xs"> 
-                <Text>{task.title}</Text>
+                <Text weight={500}>{task.title}</Text>
+                <Badge color={getColor(task.status)} variant="light">
+                    {task.status}
+                </Badge>
             </Card.Section>
-            <Text>{task.content}</Text>
+            <Text size="sm" color="dimmed">{task.content}</Text>
             <Card.Section>
                 <Button.Group>
                     <Button component="a" href={`/task/${task.id}`} compact>See</Button>

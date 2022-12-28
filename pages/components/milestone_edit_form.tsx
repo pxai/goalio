@@ -18,7 +18,6 @@ export default function MilestoneEditForm ({ milestone }: Props) {
         id: milestone?.id,
         title: milestone?.title,
         content: milestone?.content,
-        completed: milestone?.completed,
         goalId: milestone?.goalId
       },
   

@@ -71,7 +71,7 @@ model Task {
   title     String
   content   String?
   proof   String?
-  completed  Boolean @default(false)
+  status  Status @default(TODO)
   permalink String @default("")
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
@@ -80,6 +80,12 @@ model Task {
   milestone    Milestone?   @relation(fields: [milestoneId], references: [id])
   milestoneId  String?
   @@unique(fields: [id, userId], name: "id_and_userId")
+}
+
+enum Status {
+  TODO
+  DOING
+  DONE
 }
 
 model User {

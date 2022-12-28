@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TaskProps } from "../../prisma/types"
 import { useForm } from '@mantine/form';
-import { TextInput, Checkbox, Button, Textarea, Group, Box } from '@mantine/core';
+import { TextInput, Checkbox, Button, Textarea, Group, Box, Radio } from '@mantine/core';
 
 type Props = {
     milestoneId: string;
@@ -16,7 +16,7 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
       initialValues: {
         title: '',
         content: '',
-        completed: false
+        status: 'TODO'
       },
   
       validate: {
@@ -28,9 +28,9 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
     const handleSubmit =  async () => {
       setMessage('Sending');
       console.log("Form submitted: ", form.values)
-      const {title, content, completed } = form.values;
+      const {title, content, status } = form.values;
     try {
-      const body = { title, content, completed, milestoneId};
+      const body = { title, content, status, milestoneId};
       await fetch('/api/task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,8 +47,6 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
         <div>
 {message}
   <Box sx={{ maxWidth: 300 }} mx="auto">
-
-
 <form className="w-50" onSubmit={form.onSubmit(handleSubmit)}>
           <div className="mb-3">
             <div>
@@ -68,11 +66,15 @@ export default function TaskCreateForm ({ milestoneId }: Props) {
               />
             </div>
             <div>
-            <Checkbox
-              mt="md"
-              label="Completed?"
-              {...form.getInputProps('completed', { type: 'checkbox' })}
-            />
+            <Radio.Group
+              name="status"
+              label="Select status"
+              {...form.getInputProps('status', { type: 'radio' })}
+            >
+              <Radio value="TODO" label="TODO"   />
+              <Radio value="DOING" label="DOING"  />
+              <Radio value="DONE" label="DONE"  />
+            </Radio.Group>
             </div>
             <div>
             <Button type="submit" disabled={message === 'Sending'}>Create Task</Button>

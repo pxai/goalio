@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TaskProps } from "../../prisma/types"
 import { useForm } from '@mantine/form';
-import { TextInput, Checkbox, Button, Textarea, Group, Box } from '@mantine/core';
+import { TextInput, Checkbox, Button, Textarea, Group, Box, Radio } from '@mantine/core';
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -18,7 +18,7 @@ export default function TaskEditForm ({ task }: Props) {
       initialValues: {
         title: task?.title,
         content: task?.content,
-        completed: task?.completed,
+        status: task?.status,
         milestoneId: task?.milestoneId
       },
   
@@ -59,6 +59,7 @@ export default function TaskEditForm ({ task }: Props) {
                 label="Title"
                 name="title"
                 placeholder="Add title"
+                withAsterisk
                 {...form.getInputProps('title')}
               />
             </div>
@@ -71,11 +72,15 @@ export default function TaskEditForm ({ task }: Props) {
               />
             </div>
             <div>
-            <Checkbox
-              mt="md"
-              label="Completed?"
-              {...form.getInputProps('completed', { type: 'checkbox' })}
-            />
+            <Radio.Group
+              name="status"
+              label="Select status"
+              {...form.getInputProps('status', { type: 'radio' })}
+            >
+              <Radio value="TODO" label="TODO"   />
+              <Radio value="DOING" label="DOING"  />
+              <Radio value="DONE" label="DONE"  />
+            </Radio.Group>
             </div>
             <div>
             <Button type="submit" disabled={message === 'Sending'}>Update Task</Button>

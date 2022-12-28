@@ -14,7 +14,6 @@ export default function MilestoneForm ({ goalId }: Props) {
       initialValues: {
         title: '',
         content: '',
-        completed: false
       },
   
       validate: {

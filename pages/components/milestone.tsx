@@ -34,13 +34,25 @@ export default function Milestone ({milestone, contracted = true}: Props) {
                 <Grid>
                     <Grid.Col span={4}>
                         {
-                            milestone?.tasks?.map(task => {
+                            milestone?.tasks?.filter(task => task.status === 'TODO').map(task => {
                                 return <Task key={task.id} task={task} />
                             })
                         } 
                     </Grid.Col>
-                    <Grid.Col span={4}>2</Grid.Col>
-                    <Grid.Col span={4}>3</Grid.Col>
+                    <Grid.Col span={4}>
+                        {
+                            milestone?.tasks?.filter(task => task.status === 'DOING').map(task => {
+                                return <Task key={task.id} task={task} />
+                            })
+                        } 
+                    </Grid.Col>
+                    <Grid.Col span={4}>
+                        {
+                            milestone?.tasks?.filter(task => task.status === 'DONE').map(task => {
+                                return <Task key={task.id} task={task} />
+                            })
+                        } 
+                    </Grid.Col>
                 </Grid>
             }
         </div>

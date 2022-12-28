@@ -4,11 +4,11 @@ import prisma from '../../../lib/prisma';
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "PUT") {
         const id = String(req.query.id)
-        const { title, content, completed, milestoneId } = req.body
+        const { title, content, status, milestoneId } = req.body
 
         const task = await prisma.task.update({
             where: { id: String(id) },
-            data: { title, content },
+            data: { title, content, status },
         })
         return res.json(task);
     } else if (req.method === "DELETE") {
