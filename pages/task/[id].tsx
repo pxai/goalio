@@ -15,7 +15,6 @@ type Props = {
 export default function TaskPage ({ task }: Props) {
   return (
     <Layout>
-    <Header />
     <main className={styles.main}>
       <div>
         <Task task={task} />
