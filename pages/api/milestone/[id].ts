@@ -5,7 +5,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     if (req.method === "PUT") {
         // update a Milestone.
         const id = String(req.query.id)
-        const { title, content, completed } = req.body
+        const { title, content } = req.body
 
         const milestone = await prisma.milestone.update({
             where: { id: String(id) },

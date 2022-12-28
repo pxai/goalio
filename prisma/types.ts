@@ -26,7 +26,6 @@ export type MilestoneProps = {
     title: string;
     content: string;
     proof: string;
-    completed: boolean;
     permalink?: string;
     createdAt: Date;
     updatedAt: Date;
