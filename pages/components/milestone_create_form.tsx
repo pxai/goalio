@@ -25,10 +25,9 @@ export default function MilestoneForm ({ goalId }: Props) {
 
     const handleSubmit =  async () => {
       setMessage('Sending');
-      console.log("Form submitted: ", form.values)
-      const {title, content, completed } = form.values;
+      console.log("Form submitted: ", )
     try {
-      const body = { title, content, completed, goalId};
+      const body = { ...form.values, goalId};
       await fetch('/api/milestone', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

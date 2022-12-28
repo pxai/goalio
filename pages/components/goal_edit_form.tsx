@@ -15,8 +15,8 @@ export default function GoalForm ({ goal }: Props) {
 
     const form = useForm({
       initialValues: {
-        title: goal.title,
-        content: goal.content,
+        title: goal?.title,
+        content: goal?.content,
       },
       validate: {
         title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
@@ -27,9 +27,8 @@ export default function GoalForm ({ goal }: Props) {
     const handleSubmit =  async () => {
       setMessage('Sending');
       console.log("Form submitted: ", form.values)
-      const {title, content } = form.values;
     try {
-      const body = { title, content };
+      const body = { ...form.values };
       const result = await fetch(`/api/goal/${goal.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -41,7 +40,7 @@ export default function GoalForm ({ goal }: Props) {
     }
       setMessage('Sent');
       setSubmitted(true);
-      router.push(`/goal/${goal.id}`)
+      router.push(`/goal/${goal?.id}`)
     }
 
     return (

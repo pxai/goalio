@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import styles from '../../../styles/Home.module.css'
 import { MilestoneProps } from '../../../prisma/types';
 import { getSession } from 'next-auth/react';
@@ -19,7 +18,7 @@ export default function EditMilestone({milestone}: Props) {
   const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
   const [submitted, setSubmitted] = useState(false);
   const handleSent = (milestone: MilestoneProps) => {
-    router.push(`/milestone/${milestone.id}`)
+    router.push(`/milestone/${milestone?.id}`)
   }
 
   return (

@@ -15,11 +15,11 @@ export default function MilestoneEditForm ({ milestone }: Props) {
     console.log("Dale: ", milestone)
     const form = useForm({
       initialValues: {
-        id: milestone.id,
-        title: milestone.title,
-        content: milestone.content,
+        id: milestone?.id,
+        title: milestone?.title,
+        content: milestone?.content,
         completed: milestone?.completed,
-        goalId: milestone.goalId
+        goalId: milestone?.goalId
       },
   
       validate: {
@@ -33,7 +33,7 @@ export default function MilestoneEditForm ({ milestone }: Props) {
       console.log("Form submitted: ", form.values)
     try {
       const body = { ...form.values };
-      await fetch(`/api/milestone/${milestone.id}`, {
+      await fetch(`/api/milestone/${milestone?.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -43,7 +43,7 @@ export default function MilestoneEditForm ({ milestone }: Props) {
     }
       setMessage('Sent');
       setSubmitted(true);
-      router.push(`/milestone/${milestone.id}`)
+      router.push(`/milestone/${milestone?.id}`)
     }
 
     return (

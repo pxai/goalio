@@ -16,9 +16,9 @@ export default function TaskEditForm ({ task }: Props) {
 
     const form = useForm({
       initialValues: {
-        title: task.title,
-        content: task.content,
-        completed: task.completed,
+        title: task?.title,
+        content: task?.content,
+        completed: task?.completed,
         milestoneId: task?.milestoneId
       },
   
@@ -43,7 +43,7 @@ export default function TaskEditForm ({ task }: Props) {
     }
       setMessage('Sent');
       setSubmitted(true);
-      router.push(`/milestone/${task.milestoneId}`)
+      router.push(`/milestone/${task?.milestoneId}`)
     }
 
     return (

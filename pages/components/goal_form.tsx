@@ -24,9 +24,8 @@ export default function GoalForm ({ handleSent }: Props) {
     const handleSubmit =  async () => {
       setMessage('Sending');
       console.log("Form submitted: ", form.values)
-      const {title, content } = form.values;
     try {
-      const body = { title, content };
+      const body = { ...form.values };
       const result = await fetch('/api/goal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
