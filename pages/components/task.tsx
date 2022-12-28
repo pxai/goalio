@@ -1,22 +1,26 @@
 import Link from "next/link";
 import { TaskProps } from "../../prisma/types"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button } from "@mantine/core";
+import { Card, Text, Badge, Button, Group } from '@mantine/core';
 
 type Props = {
     task: TaskProps;
 }
 export default function Task ({ task }: Props) {
     return (
-        <div>        
-            <div>{task.title}</div>
-            <div>{task.content}</div>
-            <Button.Group>
-                <Button component="a" href={`/task/${task.id}`} compact>See</Button>
-                <Button component="a" href={`/task/edit/${task.id}`} color="green" compact>Edit</Button>
-                <Button component="a" href={`/task/delete/${task.id}`} color="red" compact>Delete</Button>
-            </Button.Group>
-        </div>
+        <Card shadow="sm" p="lg" radius="md" withBorder>  
+            <Card.Section mt="md" mb="xs"> 
+                <Text>{task.title}</Text>
+            </Card.Section>
+            <Text>{task.content}</Text>
+            <Card.Section>
+                <Button.Group>
+                    <Button component="a" href={`/task/${task.id}`} compact>See</Button>
+                    <Button component="a" href={`/task/edit/${task.id}`} color="green" compact>Edit</Button>
+                    <Button component="a" href={`/task/delete/${task.id}`} color="red" compact>Delete</Button>
+                </Button.Group>
+            </Card.Section>
+        </Card>
     )
 }
 

@@ -16,8 +16,8 @@ export default function GoalForm ({ handleSent }: Props) {
         content: '',
       },
       validate: {
-        title: (value) => (/^[\w]{3,}$/.test(value) ? null : 'Title required'),
-        content: (value) => (/^[\w]{3,}$/.test(value) ? null : 'Content required'),
+        title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
+        content: (value) => (/[\w]{3,}/.test(value) ? null : 'Content required'),
       },
     });
 

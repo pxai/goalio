@@ -3,11 +3,10 @@ import { GetServerSideProps } from "next";
 import { getSession } from 'next-auth/react';
 import { GoalProps } from "../../prisma/types"
 import Goal from "../components/goal";
-import Header from '../components/header';
-import Nav from '../components/nav';
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Layout from '../components/layout';
 
 type Props = {
   goal: GoalProps;
@@ -15,9 +14,7 @@ type Props = {
 
 export default function GoalPage ({ goal }: Props) {
   return (
-    <div className={styles.container}>
-    <Header />
-    <Nav />
+    <Layout>
     <main className={styles.main}>
       <div>
         <Goal {...goal} />
@@ -26,7 +23,7 @@ export default function GoalPage ({ goal }: Props) {
       <footer className={styles.footer}>
           <Link href="https://github.com/pxai/nextjspolls">By Pello</Link>
       </footer>
-    </div>
+    </Layout>
   )
 }
 

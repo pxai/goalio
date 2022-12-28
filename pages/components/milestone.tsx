@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MilestoneProps } from "../../prisma/types"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Task from "./task";
-import TaskForm from "./task_form";
+import TaskCreateForm from "./task_create_form";
 import { useState } from "react";
 import { Button, Grid } from "@mantine/core";
 
@@ -24,7 +24,7 @@ export default function Milestone ({milestone}: Props) {
             </Button.Group>
             <h4>Tasks</h4>
             <div onClick={toggleTaskForm}>Add</div>
-            {showForm && <TaskForm milestoneId={milestone.id} />}
+            {showForm && <TaskCreateForm milestoneId={milestone.id} />}
             <Grid>
                 <Grid.Col span={4}>
                     {

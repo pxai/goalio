@@ -1,22 +1,23 @@
 import { useState } from "react";
+import { GoalProps, TaskProps } from "../../prisma/types"
 import { useForm } from '@mantine/form';
 import { TextInput, Checkbox, Button, Textarea, Group, Box } from '@mantine/core';
+import { useRouter } from 'next/router'
 
 type Props = {
-    goalId: string;
-    handleSent: Function;
+  handleSent: Function;
+  goal: GoalProps
 }
-export default function MilestoneForm ({ goalId }: Props) {
+export default function GoalForm ({ goal }: Props) {
     const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
     const [submitted, setSubmitted] = useState(false);
+    const router = useRouter()
 
     const form = useForm({
       initialValues: {
-        title: '',
-        content: '',
-        completed: false
+        title: goal.title,
+        content: goal.content,
       },
-  
       validate: {
         title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
         content: (value) => (/[\w]{3,}/.test(value) ? null : 'Content required'),
@@ -26,19 +27,21 @@ export default function MilestoneForm ({ goalId }: Props) {
     const handleSubmit =  async () => {
       setMessage('Sending');
       console.log("Form submitted: ", form.values)
-      const {title, content, completed } = form.values;
+      const {title, content } = form.values;
     try {
-      const body = { title, content, completed, goalId};
-      await fetch('/api/milestone', {
-        method: 'POST',
+      const body = { title, content };
+      const result = await fetch(`/api/goal/${goal.id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
+
     } catch (error) {
       console.error(error);
     }
       setMessage('Sent');
       setSubmitted(true);
+      router.push(`/goal/${goal.id}`)
     }
 
     return (
@@ -66,7 +69,7 @@ export default function MilestoneForm ({ goalId }: Props) {
                 <div>
                 </div>
                 <div>
-                <Button type="submit" disabled={message === 'Sending'}>Create Milestone</Button>
+                <Button type="submit" disabled={message === 'Sending'}>Update Goal</Button>
                 </div>
               </div>
             </form>

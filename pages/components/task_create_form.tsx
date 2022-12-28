@@ -6,7 +6,7 @@ import { TextInput, Checkbox, Button, Textarea, Group, Box } from '@mantine/core
 type Props = {
     milestoneId: string;
 }
-export default function TaskForm ({ milestoneId }: Props) {
+export default function TaskCreateForm ({ milestoneId }: Props) {
     const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
     const [submitted, setSubmitted] = useState(false);
     const [title, setTitle] = useState('');
@@ -20,8 +20,8 @@ export default function TaskForm ({ milestoneId }: Props) {
       },
   
       validate: {
-        title: (value) => (/^\w+$/.test(value) ? null : 'Title required'),
-        content: (value) => (/^\w+$/.test(value) ? null : 'Content required'),
+        title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
+        content: (value) => (/[\w]{3,}/.test(value) ? null : 'Content required'),
       },
     });
 

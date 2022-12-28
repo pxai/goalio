@@ -23,8 +23,8 @@ export default function TaskEditForm ({ task }: Props) {
       },
   
       validate: {
-        title: (value) => (/^\w+$/.test(value) ? null : 'Title required'),
-        content: (value) => (/^\w+$/.test(value) ? null : 'Content required'),
+        title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
+        content: (value) => (/[\w]{3,}/.test(value) ? null : 'Content required'),
       },
     });
 

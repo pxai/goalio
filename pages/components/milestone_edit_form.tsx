@@ -23,8 +23,8 @@ export default function MilestoneEditForm ({ milestone }: Props) {
       },
   
       validate: {
-        title: (value) => (/^\w+$/.test(value) ? null : 'Title required'),
-        content: (value) => (/^\w+$/.test(value) ? null : 'Content required'),
+        title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
+        content: (value) => (/[\w]{3,}/.test(value) ? null : 'Content required'),
       },
     });
 
@@ -43,7 +43,7 @@ export default function MilestoneEditForm ({ milestone }: Props) {
     }
       setMessage('Sent');
       setSubmitted(true);
-      router.push(`/goal/${milestone.goalId}`)
+      router.push(`/milestone/${milestone.id}`)
     }
 
     return (

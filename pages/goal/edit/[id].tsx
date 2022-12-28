@@ -8,13 +8,13 @@ import { useRouter } from 'next/router'
 import Layout from '../../components/layout';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import GoalForm from '../../components/goal_form';
+import GoalEditForm from '../../components/goal_edit_form';
 
 type Props = {
   goal: GoalProps
 }
 
-export default function EditPoll(props: Props) {
+export default function EditPoll({goal}: Props) {
   const router = useRouter()
   const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
   const [submitted, setSubmitted] = useState(false);
@@ -32,7 +32,7 @@ export default function EditPoll(props: Props) {
           <div hidden={!submitted} className="alert alert-primary" role="alert">
             {message}
           </div>
-          <GoalForm handleSent={handleSent} />
+          <GoalEditForm handleSent={handleSent} goal={goal} />
 
         </div>
       </main>
