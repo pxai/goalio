@@ -2,11 +2,11 @@ import prisma from '../../lib/prisma';
 import { GetServerSideProps } from "next";
 import { getSession } from 'next-auth/react';
 import { TaskProps } from "../../prisma/types"
-import Task from "../components/task";
-import Header from '../components/header';
+import Task from "../../components/task";
+import Header from '../../components/header';
 import styles from '../../styles/Home.module.css'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 
 type Props = {
   task: TaskProps;

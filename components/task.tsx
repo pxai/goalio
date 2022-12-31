@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TaskProps } from "../../prisma/types"
+import { TaskProps } from "../prisma/types"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Card, Text, Badge, Button, Group, createStyles, RingProgress } from '@mantine/core';
 import { IconFreeRights } from "@tabler/icons";
@@ -37,9 +37,3 @@ export default function Task ({ task }: Props) {
         </Card>
     )
 }
-
-export const getServerSideProps = async ({ locale }) => ({
-    props: {
-        ...(await serverSideTranslations(locale, ['common']))
-    }
-});

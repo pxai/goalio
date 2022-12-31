@@ -7,7 +7,7 @@ import { useState } from 'react';
 // import Goal from './components/goal';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Layout from './components/layout';
+import Layout from '../components/layout';
 
 type Props = {
   goals: GoalProps[]

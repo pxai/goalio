@@ -3,10 +3,10 @@ import styles from '../styles/Home.module.css'
 import { GoalProps } from '../prisma/types';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
-import Layout from './components/layout';
-import { GetServerSideProps } from 'next';
+import Layout from '../components/layout';
+import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import GoalForm from './components/goal_form';
+import GoalForm from '../components/goal_form';
 
 type Props = {
   goals: GoalProps[]
@@ -38,7 +38,7 @@ export default function AddGoal(props: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: { 
       ...(await serverSideTranslations(locale!, ['common']))

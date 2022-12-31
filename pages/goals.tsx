@@ -5,9 +5,9 @@ import styles from '../styles/Home.module.css'
 import prisma from '../lib/prisma';
 import { GoalProps } from '../prisma/types';
 import { useState } from 'react';
-import Layout from './components/layout';
+import Layout from '../components/layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import GoalHeader from './components/goal_header';
+import GoalHeader from '../components/goal_header';
 import { Button } from '@mantine/core';
 import { IconDatabase, IconEdit, IconEye, IconTrash } from '@tabler/icons';
 

@@ -1,10 +1,10 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
-import prisma from '../lib/prisma';
-import { GoalProps } from '../prisma/types';
+import styles from '../../styles/Home.module.css'
+import prisma from '../../lib/prisma';
+import { GoalProps } from '../../prisma/types';
 import { useState } from 'react';
-import Layout from './components/layout';
+import Layout from '../../components/layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type Props = {
@@ -26,6 +26,7 @@ export default function Public(props: Props) {
                 <h3><Link href={`/goal/${goal.id}`}>{goal.title}</Link></h3>
                 <div><i>{goal.content}</i></div>
                 <div>By {goal.owner?.name} - {goal.createdAt}</div>
+                <div><Link href={`/shared/${goal.id}`}>See detail</Link></div>
               </div>
             ))
           }
@@ -35,7 +36,7 @@ export default function Public(props: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const goals = await prisma.goal.findMany({
     where: { published: true },
     include: {
@@ -49,7 +50,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: { 
       goals: JSON.parse(JSON.stringify(goals)),
-      ...(await serverSideTranslations(locale!, ['common']))
+      ...(await serverSideTranslations(locale!, ['common'])),
+      revalidate: 10,
      }
   };
 };

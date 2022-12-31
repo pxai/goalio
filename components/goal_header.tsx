@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GoalProps } from "../../prisma/types"
+import { GoalProps } from "../prisma/types"
 import Milestone from "./milestone";
 import { useSession } from 'next-auth/react'; 
 import { useRouter } from "next/router";

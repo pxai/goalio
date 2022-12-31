@@ -1,6 +1,6 @@
 import Footer from "./footer";
 import HeaderComponent from "./header";
-import styles from '../../styles/Home.module.css'
+import styles from '../styles/Home.module.css'
 
 export default function Layout({ children }) {
     return (

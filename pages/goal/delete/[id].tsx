@@ -3,8 +3,8 @@ import { GetServerSideProps } from "next";
 import { getSession } from 'next-auth/react';
 import { GoalProps } from "../../../prisma/types"
 import { useRouter } from "next/router";
-import Goal from "../../components/goal";
-import Header from '../../components/header';
+import Goal from "../../../components/goal";
+import Header from '../../../components/header';
 import styles from '../../../styles/Home.module.css'
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

@@ -5,10 +5,10 @@ import { getSession } from 'next-auth/react';
 import { useState } from 'react';
 import prisma from '../../../lib/prisma';
 import { useRouter } from 'next/router'
-import Layout from '../../components/layout';
+import Layout from '../../../components/layout';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import GoalEditForm from '../../components/goal_edit_form';
+import GoalEditForm from '../../../components/goal_edit_form';
 
 type Props = {
   goal: GoalProps

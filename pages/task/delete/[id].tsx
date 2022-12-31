@@ -3,11 +3,11 @@ import { GetServerSideProps } from "next";
 import { getSession } from 'next-auth/react';
 import { TaskProps } from "../../../prisma/types"
 import { useRouter } from "next/router";
-import Header from '../../components/header';
+import Header from '../../../components/header';
 import styles from '../../../styles/Home.module.css'
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Task from '../../components/task';
+import Task from '../../../components/task';
 
 type Props = {
   task: TaskProps;

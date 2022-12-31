@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MilestoneProps } from "../../prisma/types"
+import { MilestoneProps } from "../prisma/types"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Task from "./task";
 import TaskCreateForm from "./task_create_form";

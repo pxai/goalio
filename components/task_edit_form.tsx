@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TaskProps } from "../../prisma/types"
+import { TaskProps } from "../prisma/types"
 import { useForm } from '@mantine/form';
 import { TextInput, Checkbox, Button, Textarea, Group, Box, Radio } from '@mantine/core';
 import { useRouter } from 'next/router'

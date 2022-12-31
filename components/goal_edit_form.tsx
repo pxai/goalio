@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { TaskProps } from "../../prisma/types"
+import { GoalProps, TaskProps } from "../prisma/types"
 import { useForm } from '@mantine/form';
 import { TextInput, Checkbox, Button, Textarea, Group, Box } from '@mantine/core';
+import { useRouter } from 'next/router'
 
 type Props = {
   handleSent: Function;
+  goal: GoalProps
 }
-export default function GoalForm ({ handleSent }: Props) {
+export default function GoalForm ({ goal }: Props) {
     const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
     const [submitted, setSubmitted] = useState(false);
+    const router = useRouter()
 
     const form = useForm({
       initialValues: {
-        title: '',
-        content: '',
+        title: goal?.title,
+        content: goal?.content,
       },
       validate: {
         title: (value) => (/[\w]{3,}/.test(value) ? null : 'Title required'),
@@ -26,18 +29,18 @@ export default function GoalForm ({ handleSent }: Props) {
       console.log("Form submitted: ", form.values)
     try {
       const body = { ...form.values };
-      const result = await fetch('/api/goal', {
-        method: 'POST',
+      const result = await fetch(`/api/goal/${goal.id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      const goal = await result.json();
-      handleSent(goal)
+
     } catch (error) {
       console.error(error);
     }
       setMessage('Sent');
       setSubmitted(true);
+      router.push(`/goal/${goal?.id}`)
     }
 
     return (
@@ -65,7 +68,7 @@ export default function GoalForm ({ handleSent }: Props) {
                 <div>
                 </div>
                 <div>
-                <Button type="submit" disabled={message === 'Sending'}>Create Goal!!</Button>
+                <Button type="submit" disabled={message === 'Sending'}>Update Goal</Button>
                 </div>
               </div>
             </form>

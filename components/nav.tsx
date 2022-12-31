@@ -19,7 +19,7 @@ export default function Nav () {
             <Link href="/goals">
                 {t`goals`}
             </Link>{' | '}
-            <Link href="/public">
+            <Link href="/shared">
                 {t`public`}
             </Link>{' | '}
          { 

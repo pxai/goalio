@@ -7,7 +7,6 @@ import Header from '../../components/header';
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Layout from '../../components/layout';
 
 type Props = {
   milestone: MilestoneProps;
@@ -15,14 +14,17 @@ type Props = {
 
 export default function MilestonePage ({ milestone }: Props) {
   return (
-    <Layout>
-      <main className={styles.main}>
-      <Link href={`/goal/${milestone.goalId}`}>Goal</Link>
-        <div>
-          <Milestone milestone={milestone} contracted={false} />
-        </div> 
-        </main>
-    </Layout>
+    <div className={styles.container}>
+    <Header />
+    <main className={styles.main}>
+      <div>
+        <Milestone milestone={milestone} />
+      </div> 
+      </main>
+      <footer className={styles.footer}>
+          <Link href="https://github.com/pxai/nextjspolls">By Pello</Link>
+      </footer>
+    </div>
   )
 }
 

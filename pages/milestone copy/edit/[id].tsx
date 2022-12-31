@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from '../../../styles/Home.module.css'
-import { TaskProps } from '../../../prisma/types';
+import { MilestoneProps } from '../../../prisma/types';
 import { getSession } from 'next-auth/react';
 import { useState } from 'react';
 import prisma from '../../../lib/prisma';
@@ -8,31 +8,32 @@ import { useRouter } from 'next/router'
 import Layout from '../../../components/layout';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import TaskEditForm from '../../../components/task_edit_form';
+import MilestoneEditForm from '../../../components/milestone_edit_form';
 
 type Props = {
-  task: TaskProps
+  milestone: MilestoneProps
 }
 
-export default function EditTask({task}: Props) {
+export default function EditMilestone({milestone}: Props) {
   const router = useRouter()
   const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
   const [submitted, setSubmitted] = useState(false);
-  const handleSent = (task: TaskProps) => {
-    router.push(`/task/${task.id}`)
+  const handleSent = (milestone: MilestoneProps) => {
+    router.push(`/milestone/${milestone.id}`)
   }
 
   return (
     <Layout>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Update Task
+          Update Milestone
         </h1>
         <div>
           <div hidden={!submitted} className="alert alert-primary" role="alert">
             {message}
           </div>
-          <TaskEditForm handleSent={handleSent} task={task} />
+          <MilestoneEditForm handleSent={handleSent} milestone={milestone} />
+
         </div>
       </main>
       </Layout>
@@ -42,7 +43,7 @@ export default function EditTask({task}: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const session = await getSession({ req });
   const id = String(query.id);
-  const task = await prisma.task.findUnique({
+  const milestone = await prisma.milestone.findUnique({
     where: { 
       id_and_userId: {
         id: String(id),
@@ -57,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   });
   return {
       props: { 
-        task: JSON.parse(JSON.stringify(task)),
+        milestone: JSON.parse(JSON.stringify(milestone)),
         ...(await serverSideTranslations(locale!, ['common']))
        }
   };
